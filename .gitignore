@@ -1,1 +1,6 @@
-scrapdata/
+### JupyterNotebook ###
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+### Useless data ###
+scrapdata
