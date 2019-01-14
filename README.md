@@ -37,7 +37,7 @@ Then I intend to create a clustering model - possibly a Gaussian Mixture Model -
 I'll be able to tell if the recommendation is good based on the amounts of show-ups taking into consideration the prediction model's accuracy or f1-score.
 
 ## Evaluation Metrics
-For the main predition model, I'm going to use confusion matrix with f1 and fbeta scores. I'm going to priorize precision over recall (using beta = 0.5), since I want the predicted values to be true positives, so I can try and recommend only on highly assertive no-shows.
+For the main prediction model, I'm going to use confusion matrix with f1 and fbeta scores. I'm going to prioritize precision over recall (using beta = 0.5), since I want the predicted values to be true positives, so I can try and recommend only on highly assertive no-shows.
 For validating the recommendation, I'm gonna use f1-score, since I wanna be as sure as possible if the recommendation is correct.
 For the clustering model, I'm gonna use silhouette score.
 
