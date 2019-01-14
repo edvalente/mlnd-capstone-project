@@ -1,11 +1,12 @@
 # Machine Learning Engineer Nanodegree
 ## Capstone Project
---
+
 Edgar Valente
+
 January 13, 2019
 
 ## Proposal
----
+
 ## Domain Background
 In the city of Vitória (state of Espírito Santo, Brazil) there are numerous public health facilities. In these, the number of patients that don't attend to their medical appointments has reached nearly 30% from 2014 to 2015. This pattern is similar all over the country, so it isn't a local issue. This indice represents nearly R$20 million of public cash being wasted by appointments that result in no-shows, taking into account operational costs, SMS sent, confirmation call and employee's time. That's at least R$1 million monthly waste.
 
