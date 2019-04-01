@@ -99,9 +99,12 @@ def biplot(good_data, reduced_data, pca):
     https://github.com/teddyroland/python-biplot
     '''
 
+    d1 = reduced_data.columns[0]
+    d2 = reduced_data.columns[1]
+    
     fig, ax = plt.subplots(figsize = (14,8))
     # scatterplot of the reduced data    
-    ax.scatter(x=reduced_data.loc[:, 'Dimension 1'], y=reduced_data.loc[:, 'Dimension 2'], 
+    ax.scatter(x=reduced_data.loc[:, d1], y=reduced_data.loc[:, d2], 
         facecolors='b', edgecolors='b', s=70, alpha=0.5)
     
     feature_vectors = pca.components_.T
@@ -116,8 +119,8 @@ def biplot(good_data, reduced_data, pca):
         ax.text(v[0]*text_pos, v[1]*text_pos, good_data.columns[i], color='black', 
                  ha='center', va='center', fontsize=18)
 
-    ax.set_xlabel("Dimension 1", fontsize=14)
-    ax.set_ylabel("Dimension 2", fontsize=14)
+    ax.set_xlabel(d1, fontsize=14)
+    ax.set_ylabel(d2, fontsize=14)
     ax.set_title("PC plane with original feature projections.", fontsize=16);
     return ax
     
