@@ -8,10 +8,17 @@ January 13, 2019
 ## Proposal
 
 ### Domain Background and Problem Statement
-In the city of Vitória (state of Espírito Santo, Brazil) there are numerous public health facilities. In these, the number of patients that don't attend to their medical appointments has reached nearly 30% from 2014 to 2015. This pattern is similar all over the country, so it isn't a local issue. This indice represents nearly R$20 million of public cash being wasted by appointments that result in no-shows, taking into account operational costs, SMS sent, confirmation call and employee's time. That's at least R$1 million monthly waste.
+In the city of Vitória (state of Espírito Santo, Brazil) there are numerous public health facilities. In these, the number of patients that don't attend to their medical appointments has reached nearly 30% from 2014 to 2015. This pattern is similar all over the country, so it isn't a local issue. This indice represents nearly R$20 million of public cash being wasted by appointments that result in no-shows, taking into account operational costs, SMS sent, confirmation call and employee's time. That's at least R$1 million monthly waste. 
+
+This problem will be addressed mainly as a classification problem, where I'll try to predict if a patient will show up or not on his appointment based on demographic data (age and gender) and appointment characteristics, such as day of the week which it is scheduled and number of days from registration to scheduled appointment. 
+
+As viewed in [this article](https://www.ijimai.org/journal/node/1623), this problem has been addressed before in the San Carlos Clinical Hospital, in Madrid, having demographic data, patient history and classes for medical appointments. Unfortunatelly, the [dataset](https://www.kaggle.com/joniarroba/noshowappointments/version/3) used in this case isn't as complete, but it should still be possible to predict no-shows with a certain accuracy. 
 
 ### Datasets and Inputs
-The used dataset is available on [Kaggle as version 3](https://www.kaggle.com/joniarroba/noshowappointments/version/3). I'll rewrite their names during the analysis for further clarity, with their updates registered in the dictionary between brackets ('[]'). It contains 300,000 observations and 15 variables (300000, 15), them being:
+The used dataset is available on [Kaggle as version 3](https://www.kaggle.com/joniarroba/noshowappointments/version/3).
+I'll rewrite their names during the analysis for further clarity, with their updates registered in the dictionary between brackets ('[]'). It contains 300,000 observations and 15 variables (300000, 15). The label in question is the variable 'Status', which will be renamed as 'show_up' and encoded to 1s and 0s, same as 'Gender' and 'DayOfTheWeek', so that they can be modeled. The train and test sets will be made considering the distribution of the target label, which is around 70% for show-up (1) and 30% for no-show (0).
+
+The variables in question are:
  - **Age**: integer, age of person to make the appointment [age]
  - **Gender**: categorical, gender of person to make the appointment, allowing either male or female [gender]
  - **AppointmentRegistration**: integer, the day the person asked for an appointment [app_registration]
@@ -42,7 +49,10 @@ For validating the recommendation, I'm gonna use f1-score, since I wanna be as s
 For the clustering model, I'm gonna use silhouette score.
 
 ## Project Design
-The input data will be cleaned for clarification. Preprocessing for categorical variables (week_day and gender) will be applied so that I can apply the algorithms.
+The input data will be cleaned for clarification. Preprocessing for categorical variables (week_day and gender) will be applied so that I can apply the algorithms. There are no missing values in the dataset, but outliers will be analyzed and removed, if necessary, using the inter quantile range method. They might be necessary for the unsupervised learning analysis, so that I have clusters specifically for outliers, if any. 
+
+The intended supervised learning model will probably be xgboost, and grid search will be used for cross validation and hyperparameter tuning.
+
 I'll have either two or three models:
  - Prediction model to identify no-shows;
  - Prediction model to benchmark recommendations;
