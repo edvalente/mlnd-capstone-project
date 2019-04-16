@@ -14,6 +14,26 @@ import matplotlib.cm as cm
 import pandas as pd
 import numpy as np
 
+def plot_age_and_days_per_week_day(df, label='show_up', wday='week_day', age='age', days='days_to_appointment'):
+    '''Plots 14 distplots of age and days_to_appointment per label value per day of the week'''
+    
+    week_days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+    week_range = range(0, 7)
+    
+    fig, ax = plt.subplots(2, 7, figsize=(28, 8))
+    
+    for i, wd in enumerate(week_days):
+        for label_value, label_color in enumerate(['red', 'blue']):
+            data = df.loc[df[label] == label_value].loc[df[wday] == wd].loc[:, age]
+            sns.distplot(data, color=label_color, hist=False, kde_kws={'shade': True}, ax=ax[0, i])
+        ax[0, i].set_title(wd.capitalize(), fontsize=24)
+            
+    for j, wd in enumerate(week_days):
+        for label_value, label_color in enumerate(['red', 'blue']):
+            data = df.loc[df[label] == label_value].loc[df[wday] == wd].loc[:, days]
+            sns.distplot(data, color=label_color, hist=False, kde_kws={'shade': True}, ax=ax[1, j])
+        ax[1, j].set_xlim(0, 100)
+
 def pca_results(good_data, pca):
 	'''
 	Create a DataFrame of the PCA results
