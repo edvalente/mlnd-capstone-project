@@ -5,6 +5,16 @@ Edgar Valente
 
 January 13, 2019
 
+## Requirements
+The following packages are used for the project:
+ - xgboost v0.82
+ - scikit-learn v0.20.3
+ - pandas v0.23.3
+ - numpy v1.11.3
+ - matplotlib v2.2.2
+ - python v3.6.7
+ - seaborn v0.8.1
+
 ## Proposal
 
 ### Domain Background and Problem Statement
